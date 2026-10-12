@@ -1,0 +1,297 @@
+/* ---------------------------------------------------------------- hero */
+
+.hero {
+  position: relative;
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem);
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(90rem 34rem at 82% -12%, rgb(16 185 129 / 0.1), transparent 62%),
+    radial-gradient(70rem 30rem at 4% 6%, rgb(2 132 199 / 0.07), transparent 58%),
+    var(--surface);
+  overflow: hidden;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  align-items: flex-start;
+}
+
+.h1 {
+  font-size: var(--step-5);
+  letter-spacing: -0.028em;
+  max-width: 20ch;
+}
+
+.heroLede {
+  font-size: var(--step-1);
+  color: var(--ink-muted);
+  max-width: 52ch;
+}
+
+/* brand panel — the company's own framing, set apart from our own copy */
+.thesis {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--brand-green);
+  background: var(--surface);
+  border-radius: var(--radius-m);
+  padding: var(--space-l);
+  box-shadow: var(--shadow-m);
+}
+
+.thesisLabel {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--emerald-700);
+  margin-bottom: var(--space-s);
+}
+
+.thesisQuote {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--ink-900);
+  margin-bottom: var(--space-s);
+  text-indent: -0.35em;
+}
+
+.thesisMeta {
+  font-size: var(--step--1);
+  color: var(--ink-subtle);
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------- audience cards */
+
+.trackGrid {
+  margin: 0;
+}
+
+.trackCard {
+  background: var(--surface);
+  gap: var(--space-xs);
+}
+
+.trackName {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  color: var(--emerald-900);
+}
+
+.trackSummary {
+  font-weight: 600 !important;
+  color: var(--ink-800) !important;
+  font-size: var(--step--1) !important;
+}
+
+.trackDetail {
+  font-size: 0.8125rem !important;
+  color: var(--ink-subtle) !important;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------- services list */
+
+.serviceList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.serviceList > :first-child {
+  border-top: 1px solid var(--border);
+}
+
+.serviceRow {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  align-items: baseline;
+  gap: var(--space-s);
+  transition: background-color 0.18s ease;
+}
+
+.serviceRow:hover {
+  background: var(--surface-2);
+}
+
+.serviceTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-1);
+  color: var(--ink-900);
+}
+
+/* ------------------------------------------------------------ process */
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-l);
+  margin: 0;
+}
+
+.processCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-top: var(--space-m);
+  border-top: 2px solid var(--brand-green);
+}
+
+.processIndex {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #6ee7b7;
+}
+
+.processName {
+  font-size: var(--step-2);
+  color: #fff !important;
+}
+
+.processSummary {
+  color: #cbd5e1;
+  font-size: var(--step--1);
+  line-height: 1.65;
+}
+
+.processOutput {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+
+.processOutput span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6ee7b7;
+  margin-bottom: 0.2rem;
+}
+
+/* ------------------------------------------------------ installations */
+
+.installGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-l);
+  margin: 0;
+}
+
+.installCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.installMedia {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--surface-3);
+  margin-bottom: var(--space-2xs);
+}
+
+.installImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.installCard:hover .installImg {
+  transform: scale(1.03);
+}
+
+.photoNote {
+  margin-top: var(--space-l);
+  font-size: 0.8125rem;
+  color: var(--ink-subtle);
+  max-width: 62ch;
+  padding-left: var(--space-s);
+  border-left: 2px solid var(--border-strong);
+}
+
+/* ------------------------------------------------------------ sectors */
+
+.sectorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  margin: 0;
+}
+
+.sectorItem {
+  background: var(--surface);
+  padding: var(--space-m) var(--space-s);
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--ink-700);
+  display: flex;
+  align-items: center;
+  min-height: 4.25rem;
+}
+
+/* ---------------------------------------------------------------- cta */
+
+.ctaBand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-l);
+}
+
+.ctaBand h2 {
+  font-size: var(--step-3);
+  max-width: 22ch;
+  margin-bottom: var(--space-2xs);
+}
+
+.ctaBand p {
+  color: var(--emerald-50);
+  opacity: 0.9;
+  max-width: 46ch;
+}
+
+/* --------------------------------------------------------- responsive */
+
+@media (max-width: 1000px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .h1 {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .installCard:hover .installImg {
+    transform: none;
+  }
+}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img"
+     aria-label="Skoon Carbon Lab — ESG advisory and carbon accounting">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#032E22"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#10B981"/>
+
+  <g transform="translate(96 214)">
+    <text x="0" y="0" font-family="Montserrat, Helvetica, Arial, sans-serif" font-size="112"
+          font-weight="700" fill="#FFFFFF" letter-spacing="-2">Sk</text>
+    <path d="M232 20 C216 2, 184 2, 184 20 C184 38, 216 38, 232 20 C248 2, 280 2, 280 20 C280 38, 248 38, 232 20"
+          transform="translate(0 -20)"
+          fill="none" stroke="#10B981" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="298" y="0" font-family="Montserrat, Helvetica, Arial, sans-serif" font-size="112"
+          font-weight="700" fill="#FFFFFF" letter-spacing="-2">n</text>
+    <text x="4" y="56" font-family="Montserrat, Helvetica, Arial, sans-serif" font-size="26"
+          font-weight="600" fill="#6EE7B7" letter-spacing="14">CARBON LAB</text>
+  </g>
+
+  <text x="98" y="430" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="#CBD5E1">
+    ESG advisory · sustainability reporting · carbon accounting
+  </text>
+  <text x="98" y="486" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#94A3B8">
+    For corporations, investors and government agencies
+  </text>
+</svg>

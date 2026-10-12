@@ -1,0 +1,180 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  min-height: 72px;
+}
+
+.brand {
+  flex: none;
+}
+
+.desktopNav {
+  margin-left: auto;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.6vw, 1.6rem);
+}
+
+.navList a {
+  display: inline-block;
+  padding: 0.5rem 0.15rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink-700);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.navList a:hover {
+  color: var(--emerald-800);
+  border-bottom-color: var(--brand-green);
+}
+
+.active {
+  color: var(--emerald-800) !important;
+  border-bottom-color: var(--emerald-700) !important;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  flex: none;
+}
+
+.toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-s);
+}
+
+.burger {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 14px;
+}
+
+.burger span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ink-900);
+  border-radius: 1px;
+  transition: transform 0.22s ease, opacity 0.16s ease, top 0.22s ease;
+}
+
+.burger span:nth-child(1) {
+  top: 0;
+}
+.burger span:nth-child(2) {
+  top: 6px;
+}
+.burger span:nth-child(3) {
+  top: 12px;
+}
+
+.burger[data-open='true'] span:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+}
+.burger[data-open='true'] span:nth-child(2) {
+  opacity: 0;
+}
+.burger[data-open='true'] span:nth-child(3) {
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+/* mobile panel
+   ------------------------------------------------------------------------
+   Visibility is driven by the `hidden` attribute (set by React) and CSS must
+   respect it. An unconditional `display: block` here would override the
+   UA stylesheet's `[hidden] { display: none }`, leaving the closed menu both
+   visible and keyboard-reachable — the bug this rule exists to prevent. */
+.panel {
+  display: none;
+  border-top: 1px solid var(--border);
+  background: #fff;
+  padding: var(--space-m) var(--container-pad) var(--space-l);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.panelList {
+  display: flex;
+  flex-direction: column;
+}
+
+.panelList a {
+  display: block;
+  padding: 0.85rem 0;
+  font-size: var(--step-1);
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink-900);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.panelActive {
+  color: var(--emerald-800) !important;
+}
+
+.panelCta {
+  margin-top: var(--space-m);
+  width: 100%;
+}
+
+/* ---------------------------------------------------------- responsive */
+
+@media (max-width: 1080px) {
+  .navList a {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .toggle {
+    display: inline-flex;
+  }
+
+  /* only rendered when React has removed the `hidden` attribute */
+  .panel:not([hidden]) {
+    display: block;
+  }
+
+  /* The CTA moves into the mobile panel below this width.
+     Scoped as `.actions .cta` deliberately: `.btn` in globals.css sets
+     `display: inline-flex` at equal specificity, so a bare `.cta` here would
+     lose the cascade depending on stylesheet order. */
+  .actions .cta {
+    display: none;
+  }
+}

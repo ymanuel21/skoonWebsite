@@ -1,0 +1,206 @@
+/* ---------------------------------------------------------- stages */
+
+.stageList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-l);
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--border);
+}
+
+.stage:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.stageRail {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.stageIndex {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-green);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.stageBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  max-width: 74ch;
+}
+
+.stageName {
+  font-size: var(--step-3);
+  color: var(--emerald-900);
+}
+
+.stageSummary {
+  font-size: var(--step-1);
+  color: var(--ink-muted);
+}
+
+.stageSub {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  margin-top: var(--space-2xs);
+}
+
+.activities {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.activities li {
+  position: relative;
+  padding-left: 1.35rem;
+  color: var(--ink-700);
+  font-size: var(--step--1);
+  line-height: 1.62;
+}
+
+.activities li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--brand-green);
+}
+
+.stageOutput {
+  margin-top: var(--space-xs);
+  padding: var(--space-s) var(--space-m);
+  background: var(--surface-2);
+  border-left: 3px solid var(--emerald-700);
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+}
+
+.stageOutput span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--emerald-700);
+  margin-bottom: 0.25rem;
+}
+
+.stageOutput p {
+  font-size: var(--step--1);
+  color: var(--ink-800);
+}
+
+/* -------------------------------------------------------- strategy */
+
+.strategyGrid {
+  margin: 0;
+}
+
+.strategyCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  padding-top: var(--space-m);
+  border-top: 2px solid var(--brand-green);
+}
+
+.strategyIndex {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #6ee7b7;
+}
+
+.strategyCard p {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.4;
+  color: #fff;
+}
+
+/* ------------------------------------------------------- assurance */
+
+.assuranceList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.assuranceList > :first-child {
+  border-top: 1px solid var(--border);
+}
+
+.assuranceItem h3 {
+  font-size: var(--step-1);
+  margin-bottom: var(--space-3xs);
+}
+
+.assuranceItem p {
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+  max-width: 58ch;
+}
+
+/* ------------------------------------------------------ frameworks */
+
+.frameworkGrid {
+  margin: 0;
+}
+
+.frameworkCard {
+  background: var(--surface);
+}
+
+.frameworkCard h3 {
+  font-size: var(--step-1);
+  color: var(--emerald-900);
+}
+
+.frameworkScope {
+  font-family: var(--font-display) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--emerald-700) !important;
+}
+
+.frameworkNote {
+  color: var(--ink-muted) !important;
+  font-size: var(--step--1) !important;
+}
+
+.frameworkNoteFoot {
+  margin-top: var(--space-l);
+  font-size: 0.8125rem;
+  color: var(--ink-subtle);
+}
+
+/* ------------------------------------------------------ responsive */
+
+@media (max-width: 720px) {
+  .stage {
+    grid-template-columns: 1fr;
+    gap: var(--space-s);
+  }
+}

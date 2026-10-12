@@ -1,0 +1,149 @@
+.intro p {
+  font-size: var(--step-1);
+  line-height: 1.65;
+}
+
+.intro p + p {
+  margin-top: var(--space-s);
+}
+
+/* --------------------------------------------------------- timeline */
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-l);
+  margin: 0;
+}
+
+.timelineItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-top: var(--space-m);
+  border-top: 2px solid var(--brand-green);
+}
+
+.timelineYear {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--emerald-900);
+}
+
+.timelineText {
+  color: var(--ink-muted);
+  max-width: 46ch;
+}
+
+.partnerNote {
+  margin-top: var(--space-l);
+  padding: var(--space-s) var(--space-m);
+  border-left: 3px solid var(--border-strong);
+  background: var(--surface);
+  font-size: 0.8125rem;
+  color: var(--ink-subtle);
+  max-width: 76ch;
+}
+
+/* ----------------------------------------------------- mission block */
+
+.blockTitle {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--emerald-700);
+  margin-bottom: var(--space-s);
+}
+
+.numbered {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.numbered li {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: var(--space-s);
+  align-items: baseline;
+  font-size: var(--step-1);
+  color: var(--ink-800);
+}
+
+.vision {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--ink-900);
+  max-width: 32ch;
+}
+
+/* ---------------------------------------------------------- why us */
+
+.whyGrid {
+  margin: 0;
+}
+
+.whyCard {
+  padding: var(--space-l) 0;
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+}
+
+.whyCard h3 {
+  font-size: var(--step-1);
+  margin-bottom: var(--space-2xs);
+}
+
+.whyCard p {
+  color: #cbd5e1;
+  font-size: var(--step--1);
+  line-height: 1.65;
+  max-width: 46ch;
+}
+
+/* ------------------------------------------------------------ team */
+
+.teamList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.teamList > :first-child {
+  border-top: 1px solid var(--border);
+}
+
+.teamItem h3 {
+  font-size: var(--step-1);
+  margin-bottom: var(--space-3xs);
+}
+
+.teamItem p {
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+  max-width: 56ch;
+}
+
+/* ------------------------------------------------------ principles */
+
+.principleGrid {
+  margin: 0;
+}
+
+.principleCard {
+  gap: var(--space-s);
+  background: var(--surface);
+}
+
+.principleCard p {
+  font-size: var(--step-0) !important;
+  color: var(--ink-800) !important;
+  font-weight: 500;
+  line-height: 1.55;
+}

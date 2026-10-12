@@ -1,0 +1,154 @@
+/* ------------------------------------------------------- regulations */
+
+.regList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.regItem {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: var(--space-m) var(--space-xl);
+  padding-block: var(--space-l);
+  border-top: 1px solid var(--border);
+}
+
+.regList > :last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.regHead {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.regShort {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--emerald-900);
+}
+
+.regInstrument {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+}
+
+.regRequirement {
+  color: var(--ink-700);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+/* ---------------------------------------------------- frameworks */
+
+.fwList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.fwItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-s) var(--space-l);
+  padding-block: var(--space-l);
+  border-top: 1px solid var(--border);
+}
+
+.fwList > :last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.fwName {
+  font-size: var(--step-2);
+  color: var(--emerald-900);
+}
+
+.fwScope {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--emerald-700);
+  margin-top: 0.3rem;
+}
+
+.fwNote {
+  font-size: var(--step-1);
+  color: var(--ink-muted);
+  max-width: 30ch;
+}
+
+/* ------------------------------------------------------- mapping */
+
+.mapping {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+  align-items: flex-start;
+}
+
+.mapList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.mapList li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-left: var(--space-s);
+  border-left: 2px solid var(--border-strong);
+}
+
+.mapList strong {
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  color: var(--ink-900);
+}
+
+.mapList span {
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* ---------------------------------------------------- disclaimer */
+
+.disclaimer {
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+  max-width: 74ch;
+  padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand-blue);
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  line-height: 1.65;
+}
+
+.disclaimer strong {
+  color: var(--ink-900);
+}
+
+/* ------------------------------------------------------ responsive */
+
+@media (max-width: 780px) {
+  .regItem {
+    grid-template-columns: 1fr;
+    gap: var(--space-s);
+  }
+}
