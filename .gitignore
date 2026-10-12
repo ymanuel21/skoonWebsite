@@ -35,3 +35,14 @@ yarn-error.log*
 
 # internal pre-commit safety script (lists identifiers that must not be published)
 /scripts/precommit-scan.sh
+
+# vercel project link (contains project/org ids; machine-specific)
+.vercel
+
+# environment files — never commit real values.
+# `.env.example` is deliberately re-included below: it is a value-free template.
+.env
+.env*.local
+.env.production
+.env.development
+!.env.example
