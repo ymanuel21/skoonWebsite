@@ -1,88 +1,70 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Wordmark.module.css';
 
 /**
- * The Skoon Carbon Lab wordmark.
+ * The Skoon Carbon Lab logo — the client's own artwork.
  *
- * The proposal (p5) defines the lockup formula explicitly:
- *     "Skoon" (clean typography)  +  infinity symbol / 'oo'  +  "CARBON LAB" (sub-brand)
- * and (p4) states the loop represents the 'oo' of "Skoon" — a continuous, circular,
- * carbon-neutral cycle. So the mark renders  Sk  +  ∞  +  n  over  CARBON LAB.
+ * Two PNG lockups are supplied, identical in composition ("Sk∞n", the loop standing in for the "oo"
+ * of Skoon, over "Carbon Lab"): a primary tone with dark letters and a white tone for dark surfaces.
+ * The file itself is what renders — no recolouring, filtering, tracing or redrawing, so the brand
+ * colours on screen are exactly the client's.
  *
- * PROVISIONAL: the proposal's own "Logo Resmi" page (p6) contains a placeholder rather
- * than the supplied artwork, so no official asset file exists. This is a faithful
- * typographic implementation of the stated formula — NOT a redrawn logo. It is isolated
- * in this one component so the official asset can be dropped in without touching layouts.
+ * Which file to use is decided by the SURFACE the mark sits on, never by the page:
+ *   - `default` (primary artwork) → light surfaces. The header is rgb(255 255 255 / .92).
+ *   - `onDark`  (white artwork)   → dark surfaces. The footer is var(--brand-navy) #0f172a.
+ *
+ * This component used to carry a typographic stand-in for the logo, because the branding proposal's
+ * "Logo Resmi" page shipped a placeholder and no asset file existed. That stand-in is gone: the
+ * supplied artwork replaced it, and the mark still lives in this one component, so a future reissue
+ * means swapping the two files in `public/images/`.
  */
+
+export const LOGO_ARTWORK = {
+  default: '/images/skoon-logo-primary.png',
+  onDark: '/images/skoon-logo-white.png',
+} as const;
+
+/** Intrinsic size of both supplied lockups (they are identical, 602x309). */
+export const LOGO_SIZE = { width: 602, height: 309 } as const;
 
 type Props = {
   /** Render as a link to the home page (header) or as a plain element (footer). */
   asLink?: boolean;
-  /** Invert for dark backgrounds. */
-  tone?: 'default' | 'onDark';
-  /** Compact drops the "CARBON LAB" sub-line. */
-  variant?: 'full' | 'compact';
+  /** Which tone of the artwork to use — chosen by the surface behind the mark. */
+  tone?: keyof typeof LOGO_ARTWORK;
+  /** Load eagerly. Use for the above-the-fold header mark; the footer mark can stay lazy. */
+  priority?: boolean;
+  /** Size overrides (the component is height-driven — see Wordmark.module.css). */
   className?: string;
 };
-
-function InfinityMark() {
-  return (
-    <svg
-      className={styles.loop}
-      viewBox="0 0 100 56"
-      role="img"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        d="M50 28 C42 18, 26 18, 26 28 C26 38, 42 38, 50 28 C58 18, 74 18, 74 28 C74 38, 58 38, 50 28"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export default function Wordmark({
   asLink = false,
   tone = 'default',
-  variant = 'full',
+  priority = false,
   className = '',
 }: Props) {
-  const root = [
-    styles.mark,
-    tone === 'onDark' ? styles.onDark : '',
-    variant === 'compact' ? styles.compact : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const root = [styles.mark, className].filter(Boolean).join(' ');
 
-  const inner = (
-    <>
-      <span className={styles.main}>
-        <span>Sk</span>
-        <InfinityMark />
-        <span>n</span>
-      </span>
-      {variant === 'full' && <span className={styles.sub}>Carbon Lab</span>}
-    </>
+  const art = (
+    <Image
+      src={LOGO_ARTWORK[tone]}
+      alt="Skoon Carbon Lab"
+      width={LOGO_SIZE.width}
+      height={LOGO_SIZE.height}
+      priority={priority}
+      className={styles.art}
+    />
   );
 
   if (asLink) {
     return (
       <Link href="/" className={root} aria-label="Skoon Carbon Lab — home">
-        {inner}
+        {art}
       </Link>
     );
   }
 
-  return (
-    <span className={root} aria-label="Skoon Carbon Lab">
-      {inner}
-    </span>
-  );
+  return <span className={root}>{art}</span>;
 }

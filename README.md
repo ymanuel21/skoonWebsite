@@ -82,7 +82,7 @@ site/
 │   ├── robots.ts               /robots.txt
 │   └── api/enquiry/route.ts    enquiry endpoint (delivery optional)
 ├── components/
-│   ├── Wordmark.tsx            the Sk∞n lockup (single source of truth for the logo)
+│   ├── Wordmark.tsx            the client's logo artwork (single source of truth for the logo)
 │   ├── Header.tsx / Footer.tsx
 │   ├── PageHero.tsx            shared inner-page masthead
 │   ├── ContactForm.tsx         client-side form + validation
@@ -109,12 +109,24 @@ documents) is marked `EDITORIAL` in the project's content-traceability record.
 
 ### The wordmark
 
-`components/Wordmark.tsx` implements the logo formula the branding proposal specifies (B p5):
-`Sk` + `∞` (the proposal states the loop is the **"oo"** of "Skoon", B p4) over `CARBON LAB`.
+`components/Wordmark.tsx` renders the **client's own logo artwork** — the `Sk∞n` lockup (the loop is
+the **"oo"** of "Skoon", B p4) over `Carbon Lab` — from two PNG files in `public/images/`:
 
-**It is deliberately isolated in one component.** The proposal's own "Logo Resmi" page (B p6)
-contains a placeholder rather than the artwork, so **no official logo asset exists**. When it is
-supplied, replace the internals of that one component — nothing else references the mark.
+| File | Tone | Used on |
+| --- | --- | --- |
+| `skoon-logo-primary.png` | dark letters | light surfaces — the header, `rgb(255 255 255 / .92)` |
+| `skoon-logo-white.png` | white letters | dark surfaces — the footer, `var(--brand-navy)` #0f172a |
+
+The supplied file is what renders: nothing is recoloured, filtered, traced or redrawn, so the brand
+colours on screen are the client's. The mark stays isolated in this one component — nothing else
+references it, so a reissue means replacing those two files and nothing else.
+
+Sizing is height-driven (33px, exactly the height the previous lockup occupied), so the swap left the
+header and the page geometry untouched; a caller needing a different size passes a `className`.
+
+Earlier revisions of this project carried a *typographic stand-in* for the logo, because the
+branding proposal's "Logo Resmi" page (B p6) contains a placeholder rather than the artwork. That
+stand-in has been replaced by the artwork itself.
 
 ---
 
@@ -233,7 +245,9 @@ readiness probe and to confirm whether form delivery is wired up.
    sitemap — leaving it as localhost will publish wrong URLs).
 2. Decide on enquiry delivery and set `ENQUIRY_TRANSPORT` + the matching credentials, **or**
    consciously accept the "not configured" state.
-3. Supply the **official logo artwork** and drop it into `components/Wordmark.tsx`.
+3. The **logo artwork** is supplied and in place (`public/images/skoon-logo-primary.png` +
+   `skoon-logo-white.png`). If the client issues a revised lockup, replace those two files — nothing
+   else references the mark.
 4. Confirm the content items flagged as withheld or unsupported in the project's
    content-traceability record — particularly the legal entity name and the contact details,
    which are currently rendered as "pending confirmation".
@@ -257,8 +271,10 @@ is present.
 
 Recorded honestly here and in the project's QA report:
 
-- **No official logo artwork exists.** The wordmark is a faithful typographic implementation of
-  the proposal's stated formula, not the supplied asset.
+- **The favicon and the Open Graph image do not use the supplied artwork.** `public/icon.svg` is the
+  loop badge and `public/og.svg` still renders the `Sk∞n` lockup typographically, both built from the
+  design tokens. Only the in-page mark uses the client's files. Rebuild those two from the artwork
+  before launch if the social preview matters.
 - **The registered legal entity name, address, telephone and email are unknown.** They render as
   "pending confirmation" rather than being guessed.
 - **Carbon accounting** appears only in the branding proposal, which is a design document rather

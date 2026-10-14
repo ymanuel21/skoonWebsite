@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brandCol}>
-          <Wordmark variant="full" tone="onDark" />
+          <Wordmark tone="onDark" />
           <p className={styles.blurb}>
             ESG advisory, sustainability reporting and carbon accounting — with renewable energy
             delivery through a specialist partnership.

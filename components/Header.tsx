@@ -44,7 +44,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.bar}`}>
-        <Wordmark asLink variant="full" className={styles.brand} />
+        <Wordmark asLink priority className={styles.brand} />
 
         <nav className={styles.desktopNav} aria-label="Primary">
           <ul className={styles.navList}>
