@@ -1,21 +1,71 @@
-/* ---------------------------------------------------------------- hero */
+/* ===========================================================================
+   Home page.
+
+   The page is deliberately in two halves, following the two references the
+   client gave for this refinement:
+
+     PART A  (hero → "clients" boundary band)  — Reference A visual direction:
+             full-bleed photography, flat white / grey bands with hard edges,
+             very airy spacing, restrained secondary CTAs, no rounded cards,
+             green used only as an accent.
+     PART B  (ESG reporting run)              — Reference B visual direction:
+             warm off-white base, 12-column text/image blocks that alternate
+             sides, terse bolded checklists, pill CTAs, generous vertical
+             rhythm, dashed connector motif.
+
+   Both halves use Skoon's own design tokens (app/globals.css). The few values
+   that are not tokens — the neutral photo-step-down grey and the warm cream —
+   are scoped to this module as local custom properties so that no global
+   branding or design-system token is changed. Accents stay Skoon emerald in
+   both halves: the reference's orange is not imported.
+   =========================================================================== */
+
+/* ------------------------------------------------------------------- hero */
 
 .hero {
   position: relative;
-  padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem);
-  border-bottom: 1px solid var(--border);
-  background:
-    radial-gradient(90rem 34rem at 82% -12%, rgb(16 185 129 / 0.1), transparent 62%),
-    radial-gradient(70rem 30rem at 4% 6%, rgb(2 132 199 / 0.07), transparent 58%),
-    var(--surface);
+  isolation: isolate;
   overflow: hidden;
+  border-bottom: 1px solid var(--border);
 }
 
+/* The photograph is a full-bleed block behind the text. */
+.heroMedia {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Reference A overlays text on the photo with no scrim because its own image
+   is dark enough. The installation photograph used here is bright daylight, so
+   a brand-emerald scrim is applied to keep the white text at AA or better.
+   This is a deliberate, documented accessibility deviation from the reference. */
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(6 78 59 / 0.74), rgb(6 78 59 / 0.58));
+}
+
+/* Two columns, as in the reference: statement left, support copy + CTAs right. */
 .heroGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+  align-items: end;
+  padding-block: clamp(4rem, 11vw, 9rem);
+}
+
+.h1 {
+  font-size: var(--step-5);
+  letter-spacing: -0.028em;
+  max-width: 21ch;
+  color: #fff;
 }
 
 .heroCopy {
@@ -23,84 +73,55 @@
   flex-direction: column;
   gap: var(--space-m);
   align-items: flex-start;
-}
-
-.h1 {
-  font-size: var(--step-5);
-  letter-spacing: -0.028em;
-  max-width: 20ch;
+  padding-bottom: 0.4rem;
 }
 
 .heroLede {
   font-size: var(--step-1);
-  color: var(--ink-muted);
-  max-width: 52ch;
+  color: rgb(255 255 255 / 0.94);
+  max-width: 46ch;
 }
 
-/* brand panel — the company's own framing, set apart from our own copy */
-.thesis {
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--brand-green);
-  background: var(--surface);
-  border-radius: var(--radius-m);
-  padding: var(--space-l);
-  box-shadow: var(--shadow-m);
+/* ------------------------------------------------ audiences (flat band) */
+
+.audienceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-l);
+  margin: 0;
+  list-style: none;
+  padding: 0;
 }
 
-.thesisLabel {
+/* Reference A uses no rounded cards or shadows in this range: flat items
+   separated by a hairline rule instead. */
+.audienceItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--border-strong);
+}
+
+.audienceName {
   font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--emerald-700);
-  margin-bottom: var(--space-s);
-}
-
-.thesisQuote {
-  font-family: var(--font-display);
-  font-size: var(--step-2);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
+  font-size: var(--step-1);
   color: var(--ink-900);
-  margin-bottom: var(--space-s);
-  text-indent: -0.35em;
-}
-
-.thesisMeta {
-  font-size: var(--step--1);
-  color: var(--ink-subtle);
-  line-height: 1.6;
-}
-
-/* ------------------------------------------------------- audience cards */
-
-.trackGrid {
   margin: 0;
 }
 
-.trackCard {
-  background: var(--surface);
-  gap: var(--space-xs);
+.audienceSummary {
+  font-weight: 600;
+  color: var(--ink-800);
+  font-size: var(--step--1);
+  margin: 0;
 }
 
-.trackName {
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  color: var(--emerald-900);
-}
-
-.trackSummary {
-  font-weight: 600 !important;
-  color: var(--ink-800) !important;
-  font-size: var(--step--1) !important;
-}
-
-.trackDetail {
-  font-size: 0.8125rem !important;
-  color: var(--ink-subtle) !important;
+.audienceDetail {
+  font-size: 0.8125rem;
+  color: var(--ink-subtle);
   line-height: 1.6;
+  margin: 0;
 }
 
 /* ------------------------------------------------------- services list */
@@ -109,6 +130,8 @@
   display: flex;
   flex-direction: column;
   margin: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .serviceList > :first-child {
@@ -141,6 +164,8 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   gap: var(--space-l);
   margin: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .processCard {
@@ -156,23 +181,25 @@
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #6ee7b7;
+  color: var(--accent);
 }
 
 .processName {
   font-size: var(--step-2);
-  color: #fff !important;
+  color: var(--ink-900);
+  margin: 0;
 }
 
 .processSummary {
-  color: #cbd5e1;
+  color: var(--ink-muted);
   font-size: var(--step--1);
   line-height: 1.65;
+  margin: 0;
 }
 
 .processOutput {
   font-size: 0.8125rem;
-  color: #94a3b8;
+  color: var(--ink-subtle);
   margin-top: auto;
   padding-top: var(--space-xs);
 }
@@ -184,7 +211,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #6ee7b7;
+  color: var(--accent);
   margin-bottom: 0.2rem;
 }
 
@@ -195,6 +222,8 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   gap: var(--space-l);
   margin: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .installCard {
@@ -232,50 +261,329 @@
   border-left: 2px solid var(--border-strong);
 }
 
-/* ------------------------------------------------------------ sectors */
+/* =========================================================== BOUNDARY BAND
+   Reference A's second section is a social-proof band: a narrow left label
+   panel beside a wide content panel, two rows of marks, flat grey.
 
-.sectorGrid {
+   Client identities and logos are NOT authorised for publication by the
+   project's own audit (§10.2) and must not be invented, so the same geometry
+   carries the sourced sectors instead. If client marks are later approved,
+   they drop into .trustPanel unchanged — the slot is built for them.
+   ------------------------------------------------------------------------- */
+
+.trustBand {
+  --band-grey: #e7e8ea; /* reference-derived neutral, scoped to this band only */
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.trustBandInner {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-m);
-  overflow: hidden;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+  background: var(--band-grey);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: var(--radius-s);
+}
+
+.trustLabelH2 {
+  font-size: var(--step-3);
+  color: var(--ink-900);
+  margin: 0 0 0.15rem;
+  letter-spacing: -0.01em;
+}
+
+.trustLabelSub {
+  font-size: var(--step-1);
+  color: var(--ink-700);
   margin: 0;
 }
 
-.sectorItem {
-  background: var(--surface);
-  padding: var(--space-m) var(--space-s);
+.trustGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  gap: var(--space-s) var(--space-m);
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+.trustItem {
   font-size: var(--step--1);
   font-weight: 500;
   color: var(--ink-700);
   display: flex;
   align-items: center;
-  min-height: 4.25rem;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  border-top: 1px solid rgb(15 23 42 / 0.14);
 }
 
-/* ---------------------------------------------------------------- cta */
+.trustItem::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--brand-green);
+  border-radius: 50%;
+  flex: none;
+}
 
-.ctaBand {
+.trustNote {
+  grid-column: 2;
+  margin: var(--space-s) 0 0;
+  font-size: 0.8125rem;
+  /* ink-muted, not ink-subtle: on the band's #e7e8ea this measures 6.06:1.
+     ink-subtle measured 3.88:1 here, below the 4.5:1 AA floor. */
+  color: var(--ink-muted);
+  max-width: 70ch;
+}
+
+/* ============================================================ PART B — run
+   12-column alternating text/image blocks on a warm off-white base, with the
+   reference's terse checklists, pill CTAs and dashed connector motif.
+   ------------------------------------------------------------------------- */
+
+.esgRun {
+  --esg-cream: #faf8f6; /* reference-derived warm base, scoped to this run */
+  --esg-warm: #f1ece9; /* figure/panel tint, scoped to this run */
+  background: var(--esg-cream);
+  border-top: 1px solid var(--border);
+}
+
+.esgIntro {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) 0;
+  max-width: 62ch;
+}
+
+.esgBlock {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1.25rem, 4vw, 3.5rem);
+  align-items: center;
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* Strict alternation, as in the reference. */
+.textLeft .esgText {
+  grid-column: 1 / span 5;
+}
+
+.textLeft .esgFigure {
+  grid-column: 7 / span 6;
+}
+
+.textRight .esgText {
+  grid-column: 8 / span 5;
+  grid-row: 1;
+}
+
+.textRight .esgFigure {
+  grid-column: 1 / span 6;
+  grid-row: 1;
+}
+
+.esgText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  align-items: flex-start;
+}
+
+.esgKicker {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+.esgH2 {
+  font-size: var(--step-4);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--ink-900);
+  margin: 0;
+  max-width: 24ch;
+}
+
+.esgBody {
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink-700);
+  margin: 0;
+  max-width: 52ch;
+}
+
+/* Lead-in + description list — the reference's terse checklist. */
+.checklist {
+  list-style: none;
+  margin: var(--space-2xs) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.checklist li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: var(--step--1);
+  line-height: 1.55;
+  color: var(--ink-700);
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 2px;
+  background: var(--brand-green);
+}
+
+.checklist strong {
+  color: var(--ink-900);
+}
+
+/* Figure panel. Skoon publishes no software, so no product-UI mockups are
+   fabricated: panels are either authorised installation photography or a
+   token-styled diagram built from the design system. */
+.esgFigure {
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--esg-warm);
+  border: 1px solid var(--border);
+}
+
+.figureImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.figurePanel {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  padding: var(--space-l);
+  gap: var(--space-s);
+  text-align: center;
+}
+
+.figurePanelLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+.figurePanelText {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: var(--ink-800);
+  max-width: 24ch;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- CTAs */
+
+.pill {
+  display: inline-block;
+  border-radius: var(--radius-pill);
+  min-width: 15rem;
+  padding: 1.05rem 1.6rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.28;
+  background: var(--brand-emerald);
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.pill:hover {
+  background: var(--emerald-800);
+}
+
+.pillOutline {
+  display: inline-block;
+  border-radius: var(--radius-pill);
+  min-width: 15rem;
+  padding: 1.05rem 1.6rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.28;
+  background: transparent;
+  border: 1.5px solid var(--brand-emerald);
+  color: var(--brand-emerald);
+  text-decoration: none;
+  transition: background-color 0.18s ease;
+}
+
+.pillOutline:hover {
+  background: rgb(6 78 59 / 0.06);
+}
+
+.textLink {
+  font-weight: 600;
+  color: var(--brand-emerald);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* Decorative dashed connector between blocks — the reference's signature
+   motif, in Skoon's charcoal rather than the reference's near-black. */
+.connector {
+  display: block;
+  width: 0;
+  height: clamp(1.5rem, 4vw, 2.75rem);
+  margin: 0 auto;
+  border-left: 2px dashed rgb(15 23 42 / 0.22);
+}
+
+/* Closing CTA block of the reference range. */
+.esgCta {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  text-align: center;
+}
+
+.esgCtaInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-m);
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+.esgCtaActions {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-l);
+  justify-content: center;
+  gap: var(--space-s);
 }
 
-.ctaBand h2 {
-  font-size: var(--step-3);
-  max-width: 22ch;
-  margin-bottom: var(--space-2xs);
-}
-
-.ctaBand p {
-  color: var(--emerald-50);
-  opacity: 0.9;
-  max-width: 46ch;
+.pillNote {
+  font-size: 0.8125rem;
+  /* ink-subtle measured 4.49:1 on the warm base — under the 4.5:1 AA floor.
+     ink-muted measures 7.00:1. */
+  color: var(--ink-muted);
+  margin: 0;
+  max-width: 56ch;
 }
 
 /* --------------------------------------------------------- responsive */
@@ -288,10 +596,47 @@
   .h1 {
     max-width: 100%;
   }
+
+  .trustBandInner {
+    grid-template-columns: 1fr;
+  }
+
+  .trustNote {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .esgBlock {
+    grid-template-columns: 1fr;
+    gap: var(--space-l);
+  }
+
+  .textLeft .esgText,
+  .textLeft .esgFigure,
+  .textRight .esgText,
+  .textRight .esgFigure {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  /* Text always leads on narrow screens, whatever side it takes on desktop. */
+  .textRight .esgText {
+    order: -1;
+  }
+
+  .pill,
+  .pillOutline {
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .installCard:hover .installImg {
+    transform: none;
+  }
+
+  .pill:hover {
     transform: none;
   }
 }

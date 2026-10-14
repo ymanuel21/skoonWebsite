@@ -3,7 +3,7 @@ import { Montserrat, Plus_Jakarta_Sans } from 'next/font/google';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Reveal from '@/components/Reveal';
-import { site, siteUrl } from '@/lib/site';
+import { site, siteUrl, locale } from '@/lib/site';
 import './globals.css';
 
 /* Typefaces from the branding proposal p8:
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: `${site.name} — ESG advisory & carbon accounting`,
     description: site.description,
     url: siteUrl(),
-    locale: 'en',
+    locale: locale.ogLocale,
     images: [{ url: '/og.svg', width: 1200, height: 630, alt: site.name }],
   },
   twitter: {
@@ -79,8 +79,18 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${jakarta.variable}`}>
+    <html lang={locale.htmlLang} className={`${montserrat.variable} ${jakarta.variable}`}>
       <body>
+        {/* Zero-JS fallback. `.reveal` is hidden by CSS inside
+            `@media (prefers-reduced-motion: no-preference)` and shown by the Reveal
+            observer. If JavaScript never runs, that observer never fires and most of
+            the page would stay at opacity 0. With scripting enabled this element's
+            content is never parsed as markup, so the animated path is unaffected. */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: '<style>.reveal{opacity:1 !important;transform:none !important}</style>',
+          }}
+        />
         <a className="skip-link" href="#main">
           Skip to main content
         </a>

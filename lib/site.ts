@@ -59,6 +59,30 @@ export const footerNav = [
 ] as const;
 
 /**
+ * Active locale of the site.
+ *
+ * The site ships in ONE language (English). This constant exists so the language is declared in a
+ * single place instead of as scattered literals, and so a future language switcher has one obvious
+ * extension point.
+ *
+ * FUTURE WORK — not implemented, and deliberately not scaffolded here:
+ * a switcher would extend this object with the supported locales, read the active one from a
+ * route segment (`/id/...`) or a cookie, and pass it to `layout.tsx`, which already consumes
+ * `htmlLang` / `ogLocale` below. Dictionary loading and any locale routing are a separate,
+ * separately-authorised piece of work; see `LOCALIZATION_READINESS.md`.
+ *
+ * Nothing in this project may translate database content.
+ */
+export const locale = {
+  /** The language the site is published in today. */
+  current: 'en',
+  /** BCP-47 tag for the <html lang> attribute. */
+  htmlLang: 'en',
+  /** Open Graph locale value. */
+  ogLocale: 'en',
+} as const;
+
+/**
  * Canonical origin. Falls back to localhost so local builds and metadata
  * generation never crash when the variable is unset.
  */
