@@ -91,7 +91,8 @@ site/
 │   ├── content.ts              ALL SITE CONTENT, each item carrying its source citation
 │   └── site.ts                 brand, navigation, metadata defaults
 ├── public/
-│   ├── images/                 optimised project photography
+│   ├── images/                 optimised project photography + the logo artwork
+│   ├── videos/                 hero background video (`skoon-hero.mp4`)
 │   ├── icon.svg                favicon
 │   └── og.svg                  Open Graph image
 ├── scripts/
@@ -264,6 +265,18 @@ readiness probe and to confirm whether form delivery is wired up.
 PDF. It deliberately **excludes** the source collages that name and logo clients, and the vessel
 photo carrying a third-party name. Run it only if the source extraction in `../rebrand/assets_raw/`
 is present.
+
+### The hero background video
+
+`public/videos/skoon-hero.mp4` is the client's supplied footage, used **unmodified** — H.264 (AVC),
+1280×720, 24 fps, 9.08 s, 1.03 MB (≈902 kbps). It is small enough that re-encoding would trade real
+quality for a negligible saving, so no derivative is produced. The file carries a near-silent AAC
+track (≈2 kbps); playback is `muted`, so no audio is ever heard.
+
+It is the *second* layer of `.heroMedia` — the still photograph underneath stays as the video's
+`poster`, as the LCP image, and as what remains visible when `prefers-reduced-motion: reduce` hides
+the video. Nothing about the hero depends on the video loading. Swapping the footage means replacing
+that one file; the still frame is `public/images/installation-array-open.jpg`.
 
 ---
 

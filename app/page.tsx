@@ -48,6 +48,9 @@ export default function HomePage() {
           copy and restrained CTAs right, no rounded corners. */}
       <section className={styles.hero}>
         <div className={styles.heroMedia}>
+          {/* Still frame — the video's poster, the LCP image, and the layer that stays
+              visible whenever the motion layer is suppressed (reduced-motion) or the
+              video cannot play at all. The hero therefore never depends on the video. */}
           <Image
             src="/images/installation-array-open.jpg"
             alt="Ground-mounted solar array on an open site"
@@ -56,6 +59,25 @@ export default function HomePage() {
             priority
             className={styles.heroImg}
           />
+
+          {/* Native <video>: no library, no dependency, and no JavaScript required — every
+              control attribute below is in the server-rendered markup, so it autoplays,
+              loops and stays silently muted even with scripting unavailable. `poster` covers
+              the moment before the first frame decodes. Decorative background media, so it is
+              hidden from assistive tech; the still frame above carries the alternative text. */}
+          <video
+            className={styles.heroVideo}
+            poster="/images/installation-array-open.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          >
+            <source src="/videos/skoon-hero.mp4" type="video/mp4" />
+          </video>
+
           <span className={styles.heroScrim} aria-hidden="true" />
         </div>
 

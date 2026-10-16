@@ -36,16 +36,44 @@
   z-index: -1;
 }
 
+/* The still frame: the poster, the LCP image, and the layer that remains whenever the
+   motion layer is suppressed (reduced-motion) or the video cannot play. */
 .heroImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* Hero background video. Full-bleed and cropped exactly like the photograph it layers
+   over, so the composition is unchanged at every width. `pointer-events: none` means it
+   can never swallow a click or tap meant for the hero copy or its CTAs, and because
+   .heroScrim is the later sibling it still paints on top of the video — which is what
+   keeps the heading and lede legible over moving footage. */
+.heroVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+/* Nothing moves for a visitor who asked for less motion: the video is not displayed and
+   the still frame above shows instead. Pure CSS — no script, so it also holds when
+   JavaScript is unavailable. */
+@media (prefers-reduced-motion: reduce) {
+  .heroVideo {
+    display: none;
+  }
+}
+
 /* Reference A overlays text on the photo with no scrim because its own image
    is dark enough. The installation photograph used here is bright daylight, so
    a brand-emerald scrim is applied to keep the white text at AA or better.
-   This is a deliberate, documented accessibility deviation from the reference. */
+   This is a deliberate, documented accessibility deviation from the reference.
+   It is deliberately NOT reduced for the video: footage that pans across bright
+   daylight would otherwise drop the white heading below AA on those frames. */
 .heroScrim {
   position: absolute;
   inset: 0;
